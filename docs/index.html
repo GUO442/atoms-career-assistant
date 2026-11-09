@@ -8,7 +8,7 @@
   :root{
     --ink:#deebf7; --muted:#94a8bd; --accent:#408ce8; --energy:#4a8cf0;
     --red:#e02634; --steel:#1c1e24; --armor:#131416; --rail:#1a1c22;
-    --line:#ffffff14;
+    --line:#ffffff14; --green:#7bd88f; --orange:#e6a43f; --teal:#3fb5a0;
   }
   *{box-sizing:border-box}
   html,body{margin:0;height:100%}
@@ -17,7 +17,6 @@
   button{font:inherit;cursor:pointer}
   a{color:var(--accent);text-decoration:none}
 
-  /* ================= sidebar ================= */
   .sidebar{width:248px;flex-shrink:0;display:flex;flex-direction:column;padding:0 18px;
     background:linear-gradient(180deg,var(--armor),var(--rail),var(--armor));border-right:1px solid var(--line)}
   .logo{display:flex;align-items:center;gap:12px;padding:48px 0 22px}
@@ -40,15 +39,14 @@
   .convlist::-webkit-scrollbar{width:6px}.convlist::-webkit-scrollbar-thumb{background:#2a3242;border-radius:6px}
   .conv{display:flex;align-items:center;gap:7px;width:100%;padding:12px 10px;line-height:1.45;border:0;border-radius:8px;background:transparent;
     color:var(--ink);font-size:13px;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .conv:hover{background:#ffffff07}
-  .conv.active{background:#4a8cf01a}
+  .conv:hover{background:#ffffff07}.conv.active{background:#4a8cf01a}
   .foot{display:flex;flex-direction:column;gap:6px;padding:8px 12px}
   .foot .ver{font:11px ui-monospace,monospace;color:var(--muted)}
   .foot button{border:0;background:none;color:var(--ink);text-align:left;padding:6px 0;font-size:13px;display:flex;align-items:center;gap:8px}
   .foot button.muted{color:var(--muted);font-size:12px}
 
-  /* ================= main ================= */
   main{flex:1;min-width:0;overflow:auto;padding:40px 40px 70px;position:relative}
+  .page{display:none}.page.active{display:block}
   .pagehead{display:flex;flex-direction:column;gap:17px;margin-bottom:26px}
   .kicker{display:flex;align-items:center;gap:8px}
   .kicker .bar{width:28px;height:3px;background:var(--red)}
@@ -64,29 +62,26 @@
   .rule .a{width:75px;height:2px;background:#4a8cf080}.rule .b{flex:1;height:1px;background:#4a8cf01f}
   .rule i{width:5px;height:2px;background:#408ce866}
 
+  .surface{position:relative;background:var(--steel);border:1px solid #ffffff14;border-radius:5px;
+    box-shadow:0 8px 18px #0000004d;padding:16px;display:flex;flex-direction:column;gap:10px}
+  .surface::before{content:"";position:absolute;top:0;left:15px;width:20px;height:2px;background:var(--red)}
+  .surface::after{content:"";position:absolute;top:0;left:38px;width:7px;height:2px;background:#4a8cf080}
+
   .statusrow{display:flex;align-items:center;margin:0 0 14px}
   .statusrow b{font-size:15px;color:var(--accent);font-weight:600}
   .statusrow span{margin-left:auto;font-size:12px;color:var(--muted)}
-  .errline{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:13px;margin:0 0 22px;cursor:default}
+  .errline{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:13px;margin:0 0 22px}
   .errline b{color:var(--ink);font-weight:500}
-
   h2.members{font-size:22px;font-weight:700;margin:0 0 14px}
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:14px}
 
-  /* ================= agent card ================= */
-  .surface{position:relative;background:var(--steel);border:1px solid #ffffff14;border-radius:5px;
-    box-shadow:0 8px 18px #0000004d;padding:16px;display:flex;flex-direction:column;gap:10px}
-  .surface::before{content:"";position:absolute;top:0;left:15px;display:flex;width:20px;height:2px;background:var(--red)}
-  .surface::after{content:"";position:absolute;top:0;left:38px;width:7px;height:2px;background:#4a8cf080}
   .cardhead{display:flex;align-items:flex-start;gap:14px}
   .avatar{position:relative;width:78px;height:86px;border-radius:18px;background:#408ce81a;display:flex;flex-direction:column;
     align-items:center;justify-content:center;gap:3px;flex-shrink:0}
   .avatar .head{width:21px;height:21px;border-radius:50%;background:#efb491;position:relative}
   .avatar .head::before{content:"";position:absolute;top:-3px;left:-1px;width:24px;height:8px;border-radius:8px;background:#333845}
-  .avatar .body{width:34px;height:27px;border-radius:9px;background:var(--accent);color:#fff;font-size:8px;font-weight:700;
-    display:flex;align-items:center;justify-content:center}
-  .avatar .legs{display:flex;gap:7px}
-  .avatar .legs i{width:9px;height:12px;border-radius:5px;background:var(--muted)}
+  .avatar .body{width:34px;height:27px;border-radius:9px;background:var(--accent);color:#fff;font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center}
+  .avatar .legs{display:flex;gap:7px}.avatar .legs i{width:9px;height:12px;border-radius:5px;background:var(--muted)}
   .avatar .dot{position:absolute;right:3px;bottom:3px;width:12px;height:12px;border-radius:50%;background:var(--muted);border:3px solid var(--steel)}
   .who{display:flex;flex-direction:column;gap:6px;min-width:0}
   .who b{font-size:22px;font-weight:700;line-height:1.1}
@@ -96,8 +91,7 @@
   .speech{font-size:12px;padding:10px;border-radius:8px;background:#131416;color:var(--ink)}
   .duty{font-size:12px;color:var(--muted)}
   .big{font:22px/1.2 ui-monospace,monospace;font-weight:600;color:var(--accent)}
-  .meta{font-size:12px;color:var(--muted)}
-  .meta2{font-size:13px;color:var(--ink)}
+  .meta{font-size:12px;color:var(--muted)}.meta2{font-size:13px;color:var(--ink)}
   .tiny{font:10px ui-monospace,monospace;color:var(--muted)}
   .cardfoot{display:flex;align-items:center;gap:10px;margin-top:2px}
   .btn-ghost{padding:6px 14px;border-radius:5px;border:1px solid #ffffff24;background:transparent;color:var(--ink);font-size:13px}
@@ -106,21 +100,92 @@
 
   .bottombar{position:fixed;left:248px;right:0;bottom:0;padding:12px 40px;display:flex;align-items:center;gap:8px;
     color:var(--muted);font-size:12px;background:var(--armor);border-top:1px solid var(--line);z-index:5}
-  .bottombar .ok{color:#7bd88f}
+  .bottombar .ok{color:var(--green)}
+
+  /* tabs / segmented */
+  .tabbar{display:inline-flex;padding:4px;border-radius:12px;background:var(--rail);gap:6px;margin:0 0 24px}
+  .tabbar button{border:0;background:transparent;color:var(--muted);padding:11px 23px;border-radius:9px;font-size:13px}
+  .tabbar button.active{background:var(--steel);color:var(--ink);font-weight:600}
+  .toolbar{display:flex;align-items:center;gap:10px;margin:0 0 18px;flex-wrap:wrap}
+  .toolbar h3{margin:0;font-size:21px;font-weight:600}
+  .toolbar .sub{font-size:12px;color:var(--muted)}
+  .toolbar .grow{flex:1}
+  .btn-primary{padding:9px 16px;border-radius:8px;border:1px solid #408ce880;background:var(--accent);color:#fff;font-size:13px}
+  .search{padding:9px 12px;border-radius:8px;border:1px solid #ffffff24;background:var(--steel);color:var(--ink);font-size:13px;min-width:280px}
+
+  .metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:0 0 26px}
+  .metric{background:var(--steel);border:1px solid #ffffff12;border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+  .metric .top{display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:12px}
+  .metric .ico{width:30px;height:30px;border-radius:9px;background:#408ce81a;display:flex;align-items:center;justify-content:center;color:var(--accent)}
+  .metric .num{display:flex;align-items:baseline;gap:8px}
+  .metric .num b{font-size:32px;font-weight:600;line-height:1}
+  .metric .num small{font-size:11px;color:var(--muted)}
+  .metric .pct{margin-left:auto;font-size:11px;color:var(--accent);background:#408ce81a;border-radius:20px;padding:3px 9px}
+
+  .sectiontitle{display:flex;align-items:baseline;gap:10px;margin:26px 0 12px}
+  .sectiontitle h4{margin:0;font-size:16px;font-weight:600}
+  .sectiontitle span{font-size:11px;color:var(--muted)}
+  .dgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .dist{background:var(--steel);border:1px solid #ffffff12;border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:14px;min-height:250px}
+  .dist .head{display:flex;align-items:center;gap:8px}
+  .dist .head b{font-size:14px;font-weight:600}
+  .dist .head span{margin-left:auto;font-size:10px;color:var(--muted);background:#ffffff0a;border-radius:20px;padding:3px 8px}
+  .dist .body{display:flex;align-items:center;gap:22px}
+  .donut{width:132px;height:132px;border-radius:50%;flex-shrink:0;position:relative;display:flex;align-items:center;justify-content:center}
+  .donut::after{content:"";position:absolute;inset:17px;border-radius:50%;background:var(--steel)}
+  .donut .center{position:relative;z-index:1;text-align:center}
+  .donut .center b{display:block;font-size:24px;font-weight:600;line-height:1}
+  .donut .center small{font-size:10px;color:var(--muted)}
+  .legend{display:flex;flex-direction:column;gap:9px;flex:1;min-width:0}
+  .legend .row{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--ink)}
+  .legend .row i{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+  .legend .row em{font-style:normal;margin-left:auto;font-size:11px;color:var(--muted)}
+  .legend .row b{width:34px;text-align:right;font-size:11px}
+  .donut .zero{font-size:10px;color:var(--muted)}
+
+  .jobcard{background:var(--steel);border:1px solid #ffffff12;border-radius:5px;padding:16px;display:flex;flex-direction:column;gap:9px;margin-bottom:12px}
+  .jobcard .jh{display:flex;align-items:center;gap:10px}
+  .jobcard .jh b{font-size:15px;font-weight:600}
+  .jobcard .jh .badge{margin-left:auto;font-size:11px;padding:3px 9px;border-radius:20px;background:#408ce81a;color:var(--accent)}
+  .jobcard .loc{font-size:12px;color:var(--muted)}
+  .tags{display:flex;flex-wrap:wrap;gap:6px}
+  .tag{font-size:11px;padding:3px 9px;border-radius:20px;background:#ffffff0d;color:#c8d6e8;border:1px solid #ffffff12}
+  .tag.ok{color:#8fe0c8;background:#3fb5a01a;border-color:#3fb5a03a}
+  .tag.warn{color:#ffd28a;background:#e6a43f1a;border-color:#e6a43f3a}
+  .tag.bad{color:#ff9aa3;background:#e026341a;border-color:#e026343a}
+  .jobcard a{font-size:12px}
+
+  .skillgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+  .skillcard{background:var(--steel);border:1px solid #ffffff12;border-radius:5px;padding:16px;display:flex;flex-direction:column;gap:6px}
+  .skillcard b{font-size:14px}
+  .skillcard small{font:11px ui-monospace,monospace;color:var(--accent)}
+  .skillcard p{margin:0;font-size:12px;color:var(--muted);line-height:1.6}
+
+  .seg{display:inline-flex;padding:3px;border-radius:9px;background:var(--rail);gap:2px;margin:0 0 20px}
+  .seg button{border:0;background:transparent;color:var(--muted);padding:8px 16px;border-radius:7px;font-size:12px}
+  .seg button.active{background:var(--steel);color:var(--ink)}
+  .qa{background:var(--steel);border:1px solid #ffffff12;border-radius:5px;padding:16px;margin-bottom:12px}
+  .qa .qh{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+  .qa .qh b{font-size:15px;font-weight:600}
+  .qa .qh .lv{margin-left:auto;font-size:10px;padding:3px 8px;border-radius:20px;background:#e6a43f1a;color:var(--orange)}
+  .qa .cat{font-size:11px;color:var(--muted)}
+  .qa p{margin:8px 0 0;font-size:13px;color:#c3d2e6;line-height:1.75;white-space:pre-wrap}
+  .qa .roles{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}
+  .practice{background:var(--steel);border:1px solid #ffffff12;border-radius:5px;padding:16px;margin-bottom:12px;display:flex;gap:12px;align-items:flex-start}
+  .practice .n{width:34px;height:34px;border-radius:50%;background:#408ce81a;color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0}
+  .practice b{display:block;font-size:14px;margin-bottom:4px}
+  .practice p{margin:0;font-size:12px;color:var(--muted)}
 </style>
 </head>
 <body>
   <aside class="sidebar">
-    <div class="logo">
-      <div class="mark">&gt;_</div>
-      <div><b>向前 AI</b><small>CAREER WORKSPACE</small></div>
-    </div>
+    <div class="logo"><div class="mark">&gt;_</div><div><b>向前 AI</b><small>CAREER WORKSPACE</small></div></div>
     <button class="newconv">💬 新会话</button>
-    <div class="nav">
-      <button><i>🔑</i>专家·技能·连接器</button>
-      <button><i>◎</i>岗位管理</button>
-      <button><i>🎓</i>面试学院</button>
-      <button class="active"><i>⏱</i>小队</button>
+    <div class="nav" id="nav">
+      <button data-page="connectors"><i>🔑</i>专家·技能·连接器</button>
+      <button data-page="jobs"><i>◎</i>岗位管理</button>
+      <button data-page="academy"><i>🎓</i>面试学院</button>
+      <button data-page="squad" class="active"><i>⏱</i>小队</button>
     </div>
     <div class="workspace"><span>工作区</span><span>📁</span></div>
     <div class="ws-name">📁 默认工作区</div>
@@ -129,97 +194,235 @@
       <span class="ver">客户端 v2.12.0</span>
       <button class="muted">检查客户端更新</button>
       <button>🎨 IDE · 深色模式</button>
-      <button>👤 设置</button>
+      <button data-page="settings">👤 设置</button>
     </div>
   </aside>
 
   <main>
-    <div class="pagehead">
-      <div class="kicker"><span class="bar"></span><span class="txt">XIANGQIAN / WORKSPACE</span><span class="right">NATIVE DESKTOP</span></div>
-      <div class="headrow">
-        <div>
-          <h1>BOSS 推荐 100 岗筛选与回复后投递</h1>
-          <p>小队职责：求职机会发现、沟通、简历准备与后续跟进。点击成员查看独立工作台。</p>
-        </div>
-        <div class="runtime"><b>⌗ BOSS 网页接口 · 本机接入</b><span>LOCAL AGENT RUNTIME</span></div>
+    <!-- ================= 小队 ================= -->
+    <section class="page active" id="page-squad">
+      <div class="pagehead" id="head-squad"></div>
+      <div class="statusrow"><b>小队状态：待处理连接</b><span>自动刷新</span></div>
+      <div class="errline"><span>▸</span><b>上次完整流程错误</b><span>（子 Agent 当前状态以卡片为准）</span></div>
+      <h2 class="members">小队成员</h2>
+      <div class="grid" id="grid"></div>
+    </section>
+
+    <!-- ================= 岗位管理 ================= -->
+    <section class="page" id="page-jobs">
+      <div class="pagehead" id="head-jobs"></div>
+      <div class="tabbar" id="jobtabs">
+        <button data-tab="stats" class="active">总体统计</button>
+        <button data-tab="all">全部岗位</button>
+        <button data-tab="track">岗位跟进</button>
       </div>
-      <div class="rule"><span class="a"></span><span class="b"></span><i></i><i></i><i></i><i></i><i></i></div>
-    </div>
+      <div id="jobs-body"></div>
+    </section>
 
-    <div class="statusrow"><b>小队状态：待处理连接</b><span>自动刷新</span></div>
-    <div class="errline"><span>▸</span><b>上次完整流程错误</b><span>（子 Agent 当前状态以卡片为准）</span></div>
+    <!-- ================= 面试学院 ================= -->
+    <section class="page" id="page-academy">
+      <div class="pagehead" id="head-academy"></div>
+      <div class="seg" id="acadseg"><button data-sec="kb" class="active">AI岗位知识库</button><button data-sec="practice">面试练习</button></div>
+      <div id="academy-body"></div>
+    </section>
 
-    <h2 class="members">小队成员</h2>
-    <div class="grid" id="grid"></div>
+    <!-- ================= 连接器 ================= -->
+    <section class="page" id="page-connectors">
+      <div class="pagehead" id="head-connectors"></div>
+      <div id="connectors-body"></div>
+    </section>
+
+    <!-- ================= 设置 ================= -->
+    <section class="page" id="page-settings">
+      <div class="pagehead" id="head-settings"></div>
+      <div class="surface" style="padding:20px">
+        <b style="font-size:16px">真实经历档案</b>
+        <p style="color:var(--muted);font-size:13px">本地保存简历与求职偏好；所有定制版本都以这里的真实经历为依据。</p>
+        <p style="color:var(--muted);font-size:12px">演示环境不加载真实简历与个人信息。完整版在本机客户端运行。</p>
+      </div>
+    </section>
 
     <div class="bottombar"><span class="ok">✓</span><span>当前运行 v2.12.0。已加载本机安装的最新版本。工具和技能可在连接器页面刷新。</span></div>
   </main>
 
+<script src="demo-data.js"></script>
 <script>
-const conversations = [
-  ['查看小筛这个岗位筛选Agent的工作量和结果，只查询，不', true],
-  ['帮我找100个岗位', false],
-  ['帮我找100个岗位', false],
-  ['帮我启动100个BOSS推荐岗位的自动跟进任务。按我的求', false],
-  ['你帮我筛选BOSS推荐页面的岗位，先筛选50个。', false],
-  ['你好，这是对话修复验证，请简短回复一句中文。', false],
-  ['用一句话解释什么是软件测试。', false],
-  ['你好', false],
-  ['帮我查看今天最新的岗位   10个', false],
-  ['@boss-web-tools 帮我筛选10个岗位', false],
-  ['现在能帮我在boss上找相关的岗位么   AI测试/测试', false],
-  ['帮我查看一批工作岗位   10个  并返回对应的JD', false],
-  ['现在能帮我好一个新的岗位JD么', false],
-  ['帮我开始投递简历', false],
-  ['我现在本地的简历是什么样的', false],
-  ['https://www.zhipin.com/job_d', false],
-  ['我现在投了哪家企业', false]
-];
-document.getElementById('convlist').innerHTML = conversations.map(([t, active]) =>
-  `<button class="conv${active ? ' active' : ''}">${active ? '💬 ' : ''}${t}</button>`).join('');
+const D = window.DEMO_DATA || {jobManagement:{jobs:[],dimensions:[],total:0},skills:[],aiInterview:[]};
+function h(tag, cls, text){const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;return e}
+function header(el, title, subtitle){
+  el.innerHTML = `
+    <div class="kicker"><span class="bar"></span><span class="txt">XIANGQIAN / WORKSPACE</span><span class="right">NATIVE DESKTOP</span></div>
+    <div class="headrow"><div><h1>${title}</h1><p>${subtitle}</p></div>
+      <div class="runtime"><b>⌗ BOSS 网页接口 · 本机接入</b><span>LOCAL AGENT RUNTIME</span></div></div>
+    <div class="rule"><span class="a"></span><span class="b"></span><i></i><i></i><i></i><i></i><i></i></div>`;
+}
 
-const agents = [
-  { key:'collect', name:'小采', role:'岗位采集专员', state:'空闲', duty:'采集推荐岗位、读取并保存真实 JD。',
-    done:'101', exec:'执行中 0 次 · 待处理 0 岗 · 失败 0 岗', extra:'采集 130 岗 · JD已保存 101 份', tasks:'最近 0 次子任务：成功 0 · 失败 0', start:'开始', blocked:false },
-  { key:'screen', name:'小筛', role:'岗位筛选专员', state:'空闲', duty:'按求职条件筛选岗位，输出匹配依据。',
-    done:'101', exec:'执行中 0 次 · 待处理 0 岗 · 失败 0 岗', extra:'符合 68 · 排除 29', tasks:'最近 0 次子任务：成功 0 · 失败 0', start:'开始', blocked:false },
-  { key:'greet', name:'小聊', role:'打招呼专员', state:'空闲', duty:'准备逐岗招呼，发送并核验回执。',
-    done:'38', exec:'执行中 0 次 · 待处理 0 岗 · 失败 0 岗', extra:'', tasks:'最近 5 次子任务：成功 4 · 失败 1', start:'开始（发送）', blocked:false },
-  { key:'tailor', name:'小简', role:'简历定制专员', state:'空闲', duty:'依据 JD 与真实经历生成定制简历。',
-    done:'68', exec:'执行中 0 次 · 待处理 0 岗 · 失败 0 岗', extra:'', tasks:'最近 1 次子任务：成功 1 · 失败 0', start:'开始', blocked:false },
-  { key:'deliver', name:'小投', role:'简历投递专员', state:'已阻塞 / 暂停', duty:'核对目标版本、审阅和授权后投递附件。',
-    done:'0', exec:'执行中 0 次 · 待处理 39 岗 · 失败 0 岗', extra:'附件请求待处理不代表HR已读', tasks:'最近 0 次子任务：成功 0 · 失败 0', start:'开始（发送）', blocked:true },
-  { key:'followup', name:'小信', role:'回复跟进专员', state:'等待条件 / 新消息', duty:'同步 HR 回复，记录待办和跟进证据。',
-    done:'5', exec:'执行中 0 次 · 待处理 0 岗 · 失败 0 岗', extra:'', tasks:'最近 294 次子任务：成功 124 · 失败 170', start:'开始', blocked:false },
-  { key:'interview', name:'小面', role:'面试管理专员', state:'等待条件 / 新消息', duty:'识别面试邀请，记录待确认安排与状态。',
-    done:'0', exec:'执行中 0 次 · 待处理 0 岗 · 失败 0 岗', extra:'', tasks:'最近 0 次子任务：成功 0 · 失败 0', start:'开始', blocked:false }
+/* ---------- conversations ---------- */
+const conversations = [
+  ['查看小筛这个岗位筛选Agent的工作量和结果，只查询，不', true],['帮我找100个岗位', false],['帮我找100个岗位', false],
+  ['帮我启动100个BOSS推荐岗位的自动跟进任务。按我的求', false],['你帮我筛选BOSS推荐页面的岗位，先筛选50个。', false],
+  ['你好，这是对话修复验证，请简短回复一句中文。', false],['用一句话解释什么是软件测试。', false],['你好', false],
+  ['帮我查看今天最新的岗位   10个', false],['@boss-web-tools 帮我筛选10个岗位', false],
+  ['现在能帮我在boss上找相关的岗位么   AI测试/测试', false],['帮我查看一批工作岗位   10个  并返回对应的JD', false],
+  ['现在能帮我好一个新的岗位JD么', false],['帮我开始投递简历', false],['我现在本地的简历是什么样的', false],
+  ['https://www.zhipin.com/job_d', false],['我现在投了哪家企业', false]
 ];
-document.getElementById('grid').innerHTML = agents.map(a => `
+document.getElementById('convlist').innerHTML = conversations.map(([t,a])=>`<button class="conv${a?' active':''}">${a?'💬 ':''}${t}</button>`).join('');
+
+/* ---------- squad ---------- */
+const agents = [
+  {name:'小采',role:'岗位采集专员',state:'空闲',duty:'采集推荐岗位、读取并保存真实 JD。',done:'101',exec:'执行中 0 次 · 待处理 0 岗 · 失败 0 岗',extra:'采集 130 岗 · JD已保存 101 份',tasks:'最近 0 次子任务：成功 0 · 失败 0',start:'开始',blocked:false},
+  {name:'小筛',role:'岗位筛选专员',state:'空闲',duty:'按求职条件筛选岗位，输出匹配依据。',done:'101',exec:'执行中 0 次 · 待处理 0 岗 · 失败 0 岗',extra:'符合 68 · 排除 29',tasks:'最近 0 次子任务：成功 0 · 失败 0',start:'开始',blocked:false},
+  {name:'小聊',role:'打招呼专员',state:'空闲',duty:'准备逐岗招呼，发送并核验回执。',done:'38',exec:'执行中 0 次 · 待处理 0 岗 · 失败 0 岗',extra:'',tasks:'最近 5 次子任务：成功 4 · 失败 1',start:'开始（发送）',blocked:false},
+  {name:'小简',role:'简历定制专员',state:'空闲',duty:'依据 JD 与真实经历生成定制简历。',done:'68',exec:'执行中 0 次 · 待处理 0 岗 · 失败 0 岗',extra:'',tasks:'最近 1 次子任务：成功 1 · 失败 0',start:'开始',blocked:false},
+  {name:'小投',role:'简历投递专员',state:'已阻塞 / 暂停',duty:'核对目标版本、审阅和授权后投递附件。',done:'0',exec:'执行中 0 次 · 待处理 39 岗 · 失败 0 岗',extra:'附件请求待处理不代表HR已读',tasks:'最近 0 次子任务：成功 0 · 失败 0',start:'开始（发送）',blocked:true},
+  {name:'小信',role:'回复跟进专员',state:'等待条件 / 新消息',duty:'同步 HR 回复，记录待办和跟进证据。',done:'5',exec:'执行中 0 次 · 待处理 0 岗 · 失败 0 岗',extra:'',tasks:'最近 294 次子任务：成功 124 · 失败 170',start:'开始',blocked:false},
+  {name:'小面',role:'面试管理专员',state:'等待条件 / 新消息',duty:'识别面试邀请，记录待确认安排与状态。',done:'0',exec:'执行中 0 次 · 待处理 0 岗 · 失败 0 岗',extra:'',tasks:'最近 0 次子任务：成功 0 · 失败 0',start:'开始',blocked:false}
+];
+document.getElementById('grid').innerHTML = agents.map(a=>`
   <div class="surface">
-    <div class="cardhead">
-      <div class="avatar">
-        <div class="head"></div>
-        <div class="body">向前</div>
-        <div class="legs"><i></i><i></i></div>
-        <div class="dot"></div>
-      </div>
-      <div class="who">
-        <b>${a.name}</b>
-        <small>${a.role}</small>
-        <div class="state"><i></i>${a.state}</div>
-      </div>
-    </div>
+    <div class="cardhead"><div class="avatar"><div class="head"></div><div class="body">向前</div><div class="legs"><i></i><i></i></div><div class="dot"></div></div>
+      <div class="who"><b>${a.name}</b><small>${a.role}</small><div class="state"><i></i>${a.state}</div></div></div>
     <div class="speech">我已就位，可以给我安排工作。</div>
     <div class="duty">${a.duty}</div>
     <div class="big">已记录 ${a.done} 个岗位</div>
     <div class="meta">${a.exec}</div>
-    ${a.extra ? `<div class="meta2">${a.extra}</div>` : ''}
+    ${a.extra?`<div class="meta2">${a.extra}</div>`:''}
     <div class="tiny">${a.tasks}</div>
-    <div class="cardfoot">
-      <button class="btn-ghost">进入工作台</button>
-      <button class="btn-start${a.blocked ? ' blocked' : ''}">${a.start}</button>
-    </div>
+    <div class="cardfoot"><button class="btn-ghost">进入工作台</button><button class="btn-start${a.blocked?' blocked':''}">${a.start}</button></div>
   </div>`).join('');
+
+/* ---------- 岗位管理 ---------- */
+const JM = D.jobManagement || {};
+const dims = JM.dimensions || [];
+function dim(key){return dims.find(d=>d.key===key)}
+const PALETTE=['#386fd6','#7a61d9','#1fa6a8','#e69e40','#d95975','#668aa8','#5da0e8'];
+function colorFor(item){
+  const k=item.key;
+  if(['unknown','unassessed','none'].includes(k))return '#91a3bd';
+  if(['sent','replied','reviewed','accepted','offer','recommend','completed'].includes(k))return '#1fa692';
+  if(['failed','reject','rejected','excluded','cancelled'].includes(k))return '#d96373';
+  if(['pending','waiting','caution','scheduled','invited'].includes(k))return '#e69e40';
+  return '#386fd6';
+}
+function donutHTML(items,total){
+  let acc=0; const stops=[];
+  (items||[]).forEach((it,i)=>{const c=it.count||0; if(!c)return; const start=total?acc/total*360:0; acc+=c; const end=total?acc/total*360:0; stops.push(`${colorFor(it)} ${start}deg ${end}deg`)});
+  const bg = stops.length ? `conic-gradient(${stops.join(',')})` : 'conic-gradient(#ffffff0a 0 360deg)';
+  return `<div class="donut" style="background:${bg}"><div class="center"><b>${total||0}</b><small>${total?'总计':'暂无数据'}</small></div></div>`;
+}
+function distHTML(title, items){
+  const total=(items&&items[0]&&items[0].total)||0;
+  const rows=(items||[]).map((it,i)=>`<div class="row"><i style="background:${colorFor(it)}"></i><span>${it.label}</span><em>${it.count}</em><b>${it.total?((it.count*100/it.total).toFixed(1)+'%'):''}</b></div>`).join('');
+  return `<div class="dist"><div class="head"><b>${title}</b><span>分布</span></div><div class="body">${donutHTML(items,total)}<div class="legend">${rows||'<div class="row"><span>暂无数据</span></div>'}</div></div><div class="tiny">统计基数 ${total} · 数量 / 占比</div></div>`;
+}
+function jobsStats(){
+  const jobs=JM.jobs||[]; const total=JM.total||0;
+  const count=(k,v)=>jobs.filter(j=>j[k]===v).length;
+  const metrics=[
+    ['管理岗位',total,'square.stack.3d.up'],['已联系 HR',count('greet','sent')],['HR 已回复',count('reply','replied')],
+    ['简历已发送',count('resume','sent')],['待审核简历',count('review','pending')]
+  ];
+  let html=`<div class="metrics">`+metrics.map(([t,n])=>`<div class="metric"><div class="top"><span>${t}</span><span class="ico">▦</span></div><div class="num"><b>${n}</b><small>个岗位</small><span class="pct">${total?(n*100/total).toFixed(1):'0.0'}%</span></div></div>`).join('')+`</div>`;
+  html+=`<div class="sectiontitle"><h4>岗位画像</h4><span>了解机会的构成</span></div><div class="dgrid">${distHTML('岗位类别',(dim('category')||{}).items)}</div>`;
+  html+=`<div class="sectiontitle"><h4>沟通与投递</h4><span>追踪每一步推进</span></div><div class="dgrid">${distHTML('打招呼',(dim('greet')||{}).items)}${distHTML('HR 回复',(dim('reply')||{}).items)}${distHTML('简历发送',(dim('resume')||{}).items)}${distHTML('本人审阅',(dim('review')||{}).items)}</div>`;
+  html+=`<div class="sectiontitle"><h4>面试与结果</h4><span>关注后续进展</span></div><div class="dgrid">${distHTML('面试',(dim('interview')||{}).items)}${distHTML('结果',(dim('outcome')||{}).items)}</div>`;
+  html+=`<div class="sectiontitle"><h4>平台来源与简历</h4><span>按平台统计，支持后续扩展</span></div><div class="dgrid">${distHTML('平台来源',(dim('platform')||{}).items)}${distHTML('简历版本',JM.resume_distribution||[])}</div>`;
+  return html;
+}
+function badgeFor(j){
+  const tags=[];
+  tags.push(`<span class="tag">${j.platform_name||'BOSS直聘'}</span>`);
+  if(j.category)tags.push(`<span class="tag">${j.category}</span>`);
+  const L=j.labels||{};
+  const map=[['greet'],['reply'],['resume'],['review'],['interview'],['outcome']];
+  map.forEach(([k])=>{if(L[k]){const cls=/不符合|排除|拒绝|失败|未通过/.test(L[k])?'bad':/已|通过|发送|回复/.test(L[k])?'ok':'';tags.push(`<span class="tag ${cls}">${L[k]}</span>`)}});
+  return tags.join('');
+}
+function jobsAll(){
+  let jobs=(JM.jobs||[]).slice();
+  let html=`<div class="toolbar"><h3>全部岗位</h3><span class="sub">全部 ${JM.total} 个岗位 · 按最近入库排序</span><span class="grow"></span><input class="search" id="jobsearch" placeholder="搜索岗位、公司、城市"><button class="btn-primary">找新岗位</button></div>`;
+  html+=`<div id="joblist"></div>`;
+  window.__jobs=jobs;
+  return html;
+}
+function renderJobList(q){
+  const jobs=(window.__jobs||[]).filter(j=>!q||[j.title,j.company,j.city].join(' ').toLowerCase().includes(q.toLowerCase())).slice(0,40);
+  document.getElementById('joblist').innerHTML = jobs.map(j=>`
+    <div class="jobcard">
+      <div class="jh"><b>${j.company||''} · ${j.title||''}</b><span class="badge">${j.decision==='recommend'?'符合':j.decision==='reject'?'不匹配':j.decision||'待分析'}</span></div>
+      <div class="tags">${badgeFor(j)}</div>
+      <div class="loc">${[j.city,j.salary,j.experience,j.education].filter(Boolean).join(' · ')}</div>
+      ${j.url?`<a href="${j.url}" target="_blank" rel="noopener">查看岗位来源 ↗</a>`:''}
+    </div>`).join('') || '<div class="tiny">暂无岗位，调整搜索条件。</div>';
+}
+function jobsTrack(){
+  const jobs=(JM.jobs||[]).filter(j=>j.greet==='sent'||j.reply==='replied'||j.resume==='sent'||j.interview==='scheduled'||j.interview==='invited');
+  let html=`<div class="toolbar"><h3>岗位跟进</h3><span class="sub">已沟通 / 已投递 / 面试中的岗位</span></div>`;
+  html+=jobs.map(j=>`<div class="jobcard"><div class="jh"><b>${j.company||''} · ${j.title||''}</b></div><div class="tags">${badgeFor(j)}</div><div class="loc">${[j.city,j.salary].filter(Boolean).join(' · ')}</div></div>`).join('') || '<div class="tiny">暂无跟进中的岗位。</div>';
+  return html;
+}
+function renderJobs(tab){
+  const body=document.getElementById('jobs-body');
+  if(tab==='stats'){body.innerHTML=jobsStats();return}
+  if(tab==='all'){body.innerHTML=jobsAll();renderJobList('');const s=document.getElementById('jobsearch');if(s)s.oninput=()=>renderJobList(s.value);return}
+  body.innerHTML=jobsTrack();
+}
+
+/* ---------- 面试学院 ---------- */
+function renderAcademy(sec){
+  const body=document.getElementById('academy-body');
+  const qa=D.aiInterview||[];
+  if(sec==='kb'){
+    body.innerHTML = qa.map(item=>`
+      <div class="qa"><div class="qh"><b>${item.title||''}</b><span class="lv">${item.level||''}</span></div>
+        <div class="cat">${item.category||''}</div>
+        <p>${(item.answer||'').slice(0,360)}${(item.answer||'').length>360?'…':''}</p>
+        <div class="roles">${(item.roles||[]).map(r=>`<span class="tag">${r}</span>`).join('')}</div></div>`).join('');
+  }else{
+    const items=[
+      ['自我介绍','用 60 秒讲清「我是谁、做过什么、为什么匹配这个岗位」，用真实项目举证。'],
+      ['项目深挖','按「背景 → 我的动作 → 结果」讲每个项目，准备好指标与取舍。'],
+      ['技术追问','面对 Agent / RAG / 评测类追问，先讲结论，再讲证据与边界。'],
+      ['反问环节','准备 2-3 个关于团队、业务、成长的真实问题。']
+    ];
+    body.innerHTML = items.map(([t,d],i)=>`<div class="practice"><div class="n">${i+1}</div><div><b>${t}</b><p>${d}</p></div></div>`).join('');
+  }
+}
+
+/* ---------- 连接器 ---------- */
+function renderConnectors(){
+  const skills=D.skills||[];
+  document.getElementById('connectors-body').innerHTML = `
+    <div class="surface" style="padding:20px;margin-bottom:22px">
+      <b style="font-size:16px">🔗 boss-web-tools</b>
+      <p style="margin:8px 0 0;color:var(--muted);font-size:13px">BOSS 网页查询工具，供后续批量自动化任务调用。支持岗位搜索、精选/最新职位、求职期望与完整 JD。</p>
+      <p style="margin:6px 0 0;color:var(--muted);font-size:12px">在对话中输入 @boss-web-tools 并描述任务即可调用。登录失效时会提示你手动重新登录。</p>
+      <div style="display:flex;gap:10px;margin-top:14px"><button class="btn-ghost">检查网页登录状态</button><button class="btn-ghost">刷新工具与技能</button></div>
+    </div>
+    <h4 style="font-size:16px;margin:0 0 12px">已安装技能 · ${skills.length} 个</h4>
+    <div class="skillgrid">${skills.map(s=>`<div class="skillcard"><b>${s.title||s.id}</b><small>@${s.id}</small><p>${s.note||''}</p></div>`).join('')}</div>`;
+}
+
+/* ---------- nav ---------- */
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id==='page-'+id));
+  document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));
+  if(id==='squad')header(document.getElementById('head-squad'),'BOSS 推荐 100 岗筛选与回复后投递','小队职责：求职机会发现、沟通、简历准备与后续跟进。点击成员查看独立工作台。');
+  if(id==='jobs'){header(document.getElementById('head-jobs'),'岗位管理','从岗位发现到录用，掌握每一次进展。');renderJobs('stats')}
+  if(id==='academy'){header(document.getElementById('head-academy'),'面试专区','按岗位学习核心知识，用真实经历练习表达。');renderAcademy('kb')}
+  if(id==='connectors'){header(document.getElementById('head-connectors'),'专家·技能·连接器','按需调用技能与工具 · v2.12.0');renderConnectors()}
+  if(id==='settings'){header(document.getElementById('head-settings'),'设置','本机工作区与档案。')}
+  document.querySelector('main').scrollTop=0;
+}
+document.getElementById('nav').addEventListener('click',e=>{const b=e.target.closest('button');if(b)showPage(b.dataset.page)});
+document.querySelector('.foot button[data-page="settings"]').addEventListener('click',()=>showPage('settings'));
+document.getElementById('jobtabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+  document.querySelectorAll('#jobtabs button').forEach(x=>x.classList.toggle('active',x===b));renderJobs(b.dataset.tab)});
+document.getElementById('acadseg').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+  document.querySelectorAll('#acadseg button').forEach(x=>x.classList.toggle('active',x===b));renderAcademy(b.dataset.sec)});
+
+header(document.getElementById('head-squad'),'BOSS 推荐 100 岗筛选与回复后投递','小队职责：求职机会发现、沟通、简历准备与后续跟进。点击成员查看独立工作台。');
 </script>
 </body>
 </html>
