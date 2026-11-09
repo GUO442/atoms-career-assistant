@@ -1,5 +1,225 @@
-<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>向前 · BOSS Harness</title><link rel="icon" href="icon.svg"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="assistant.css"><body><script>document.documentElement.dataset.surface=location.pathname.startsWith("/admin")?"admin":"assistant";</script>
-<aside><div class="brand"><img src="icon.svg" alt="">向前<span>CAREER STUDIO</span></div><div class="navlabel">BOSS 求职 Harness</div><button class="nav" data-view="bossweb">⌁　BOSS 网页接口</button><button class="nav" data-view="harness">◉　任务运行台</button><button class="nav" data-view="skills">⌘　BOSS 技能与工具</button><button class="nav active" data-view="chat">✦　对话助手</button><button class="nav" data-view="profile">▤　真实经历档案</button><button class="nav" data-view="jobs">▥　岗位与 JD</button><button class="nav" data-view="library">▣　简历与投递台账</button><button class="nav" data-view="discover">⌕　找岗位并定制</button><button class="nav" data-view="official">⌗　官网招聘</button><div class="sidebottom"><span class="dot"></span>本地工作空间<p>把每一步，变成下一次机会。</p><small>资料保存在此电脑；AI 请求按需发送。</small></div></aside>
-<main><div class="assistant-top"><a class="assistant-logo" href="index.html">✦ 向前 <span>你的求职助手</span></a><div><span class="local-badge">本地私人工作空间</span><a href="#" target="_blank" rel="noopener">资料后台 ↗</a></div></div><header><span>个人工作空间 / <b id="crumb">对话助手</b></span><a href="https://www.zhipin.com/" target="_blank" rel="noopener">打开 BOSS 直聘 ↗</a></header><section id="bossweb" class="view hidden"><div class="eyebrow">BOSS 网页接口 · CANDIDATE TOOLS</div><h1>BOSS 网页接口 连接</h1><p>通过专用 Chrome 的登录会话调用页面实抓接口：POST 搜索岗位、GET 读取完整 JD。</p><div class="card"><h2>检查连接与账号状态</h2><div class="actions"><button id="bosslogin" type="button">打开 BOSS 登录窗口</button><button id="bosstools">检查 网页工具目录</button><button id="bossstatus">检查 网页登录态</button></div><p>首次使用请打开登录窗口并完成登录，再检查会话。浏览器保留登录态，不导出 Cookie；遇验证或限流停止。</p></div><div class="card"><h2>搜索 AI 岗位</h2><label for="bossquery">关键词</label><input id="bossquery" value="AI测试"><label for="bosscity">城市（请填写目标城市）</label><input id="bosscity" placeholder="例如：上海"><div class="actions"><button id="bosssearch">查询第一页</button></div><pre id="bossoutput" class="eventlog">等待检查连接</pre></div></section><section id="harness" class="view hidden"><h1>求职 Agent</h1><p>描述目标，Agent 根据工具返回逐步执行。选岗、验证和资料缺失时会停下来等你。</p><div class="card"><div id="agent-capabilities" class="engine">正在检查可用能力…</div><label for="agent-goal">本次求职目标</label><textarea id="agent-goal" placeholder="例如：寻找深圳的 AI 测试岗位，分析真实经历匹配情况，选岗后生成定制简历。"></textarea><div class="agent-form-row"><div><label for="agent-query">搜索关键词</label><input id="agent-query" placeholder="AI测试"></div><div><label for="agent-city">目标城市</label><input id="agent-city" placeholder="深圳"></div></div><label for="agent-deliverable">交付内容</label><select id="agent-deliverable"><option value="resume">匹配分析 + 定制简历草稿</option><option value="analysis">仅匹配分析</option></select><p>简历和偏好读取“真实经历档案”。已录入 JD 任务读取“岗位与 JD”；在线任务只使用真实查询结果，选岗后读取详情。</p><label><input type="checkbox" id="hconsent">同意将本任务目标、简历、偏好和 JD 发送给当前模型服务</label><div class="actions"><button id="runboss">在线找岗位</button><button id="runjd">分析已录入 JD</button></div><p id="hstatus" role="status"></p></div><div id="runs"></div><details class="card"><summary>可执行工具与边界</summary><div id="toolregistry"></div><p>当前不具备招聘方消息发送、简历附件投递或验证码自动处理能力。</p></details></section><section id="skills" class="view hidden"><div class="eyebrow">VERIFIED WORKFLOW · REUSABLE TOOLS</div><h1>BOSS 技能与工具</h1><p>把这次跑通的登录过程，变成其他 Agent 可以复用的能力。</p><div class="card"><div class="engine">本次会话已验证登录成功 · 2026-10-20</div><h2>手机号验证码登录</h2><p>打开登录 → 填写手机号 → 发送验证码 → 按需完成人机验证 → 填写短信码 → 确认协议 → 提交并核验账号入口。</p><p>当前登录状态需重新核验。此记录不保存手机号、短信码、Cookie 或账号姓名。</p><div class="actions"><a href="#" download="SKILL.md">下载 Skill ↓</a><a href="#" download="boss-login-tools.js">下载工具源码 ↓</a></div></div><div class="card"><h2>6 个浏览器工具</h2><p>openLogin · fillPhone · requestSms · fillSmsCode · inspectLogin · keepLoginForUser</p><p>已处理隐藏重复输入框、等待表单显示、保留验证码前导零和阶段核验。滑块位置及协议状态按实时页面处理。</p><button id="useboss" class="skilluse">在对话中使用这个 Skill ↗</button><p>GUI 对话已加载 Skill 作为流程指导。浏览器操作仍需在带浏览器工具的 Codex 对话中执行，下载 JS 本身不会建立浏览器连接。</p></div></section><section id="chat" class="view"><span id="engine" hidden></span><div class="steps"><span>01 建立档案</span><i>→</i><span>02 选择岗位</span><i>→</i><span>03 定制简历</span><i>→</i><span>04 复盘反馈</span></div><div class="conversation-bar"><button id="newconversation">＋ 新建会话</button><button id="historyconversation">◷ 历史会话</button><span id="conversation-title" hidden>正在加载会话…</span></div><div id="messages" aria-live="polite"></div><form id="composer"><textarea id="input" aria-label="对话内容" placeholder="告诉我你想做什么，例如：帮我看看这个测试经理岗位是否适合我…" required></textarea><div class="composebottom"><button id="send">发送 ↑</button></div></form><div class="footer"><span id="status">准备就绪</span><button id="export">导出对话与简历内容 ↓</button></div></section>
-<section id="profile" class="view hidden"><div class="eyebrow">YOUR SOURCE OF TRUTH</div><h1>真实经历档案</h1><p>所有定制版本都以这里的真实经历为依据。</p><div class="card"><label for="preferences">求职偏好</label><textarea id="preferences" placeholder="目标城市、岗位、薪资、行业、不能接受的条件…"></textarea><label for="resume">原始简历</label><textarea id="resume" class="large" placeholder="粘贴简历正文，包括工作经历、项目、技能和教育经历…"></textarea><div class="actions"><label class="upload">导入 TXT / Markdown<input id="file" type="file" accept=".txt,.md" hidden></label><button id="saveprofile">保存档案</button></div><small>Word 请在“简历与投递台账”导入，会自动提取正文并保留原文件。</small></div></section>
-<section id="jobs" class="view hidden"><div class="eyebrow">ONE ROLE, ONE CLEAR STORY</div><h1>岗位与 JD</h1><p>保留岗位来源，让每次分析和改写都可以追溯。</p><div class="card"><label for="jobtitle">岗位名称 / 公司</label><input id="jobtitle" placeholder="例如：测试经理 · 某银行科技公司"><label for="joburl">岗位链接</label><input id="joburl" type="url" placeholder="https://www.zhipin.com/job_detail/…"><label for="jd">岗位 JD 原文</label><textarea id="jd" class="large" placeholder="粘贴完整职责、任职要求与加分条件…"></textarea><div class="card"><h2>国安信息科技 定制简历初稿</h2><p>已基于之前生成的多Agent闭环版完成改写；待确认长期驻场及部分AI测试实践。</p><a href="#">下载这份岗位的 Word 简历 ↓</a></div><div class="actions"><button id="savejob">保存当前岗位</button><button id="analyze">保存并分析 ↗</button></div><small>此版本保存一个当前岗位。分析后可导出结果，再切换下一个岗位。</small></div></section><section id="library" class="view hidden"><div class="eyebrow">RESUMES · REVIEW · APPLICATIONS</div><h1>简历与投递台账</h1><p>每份简历关联独立 JD 和版本。阅读并确认后，才能请求投递；等待执行不会计为已投递。</p><div class="card"><div class="actions"><label class="upload">导入 Word 原简历<input id="wordfile" type="file" accept=".docx" hidden></label><button id="generateword">按当前 JD 生成定制 Word</button></div><label><input type="checkbox" id="wordconsent">同意将当前简历与 JD 发送给模型服务</label><p id="lstatus" role="status"></p></div><div id="versions"></div><h2>投递记录</h2><div id="applications"></div></section><section id="discover" class="view hidden"><div class="eyebrow">BOSS · JD · RESUME</div><h1>找适合你的岗位</h1><p>查询 BOSS 真实岗位 → 读取完整 JD → 对照真实简历 → 生成逐岗 Word。每一步保留来源链接。</p><div class="card"><label for="findquery">岗位关键词</label><input id="findquery" value="AI测试"><label for="findcity">城市</label><input id="findcity" value="深圳"><div class="actions"><button id="findjobs">搜索最多 10 个岗位</button><button id="batchtailor">逐岗读取、匹配并生成简历</button></div><label><input type="checkbox" id="findconsent">同意将简历、偏好和岗位 JD 发送模型用于匹配与改写</label><p id="findstatus" role="status"></p><small>AI开发可更换关键词分别查询。遇登录验证、风控或错误立即停止，不自动重试。生成简历不代表已经投递。</small></div><div id="foundjobs"></div></section><section id="official" class="view hidden"><div class="eyebrow">官方招聘 · OFFICIAL CAREERS</div><h1>官网社招岗位</h1><p>直连各大互联网公司官网社招搜索接口，实时搜索并读取完整 JD。公开接口，无需登录。</p><div class="card"><label for="offquery">岗位关键词</label><input id="offquery" value="AI测试"><label for="offcompanies">公司（留空=全部；key 逗号分隔，如 tencent,bytedance）</label><input id="offcompanies" placeholder="全部已注册公司"><div class="actions"><button id="offsearch">搜索官网岗位</button></div><p id="offstatus" role="status"></p><small>每家最多 10 条，返回去重并严格筛选后的新增岗位；某公司失败会如实显示，不当作零结果。生成简历不代表已投递。</small></div><div id="offjobs"></div></section></main><section id="skillcatalog" class="view hidden"><h1>Skills 技能库</h1><p>查看助手的技能说明与执行边界。查看技能不会自动执行或投递。</p><div id="skillitems"></div></section><dialog id="history-dialog"><div class="sheet-top"><h2>历史会话</h2><button id="closehistory">关闭 ×</button></div><div id="conversation-list"></div></dialog><dialog id="assistant-sheet"><div class="sheet-top"><h2 id="sheet-title">资料</h2><button id="closesheet" aria-label="关闭资料面板">关闭 ×</button></div><div id="sheet-body"></div></dialog><script src="demo-data.js"></script><script src="mock.js"></script><script src="render.js"></script><script src="app.js"></script><script src="assistant.js"></script><script src="mentions.js"></script><script src="conversations.js"></script></body></html>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>向前 AI · 求职工作台 — 在线演示</title>
+<style>
+  :root{
+    --ink:#deebf7; --muted:#94a8bd; --accent:#408ce8; --energy:#4a8cf0;
+    --red:#e02634; --steel:#1c1e24; --armor:#131416; --rail:#1a1c22;
+    --line:#ffffff14;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{display:flex;height:100vh;overflow:hidden;background:var(--armor);color:var(--ink);
+    font:14px/1.5 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB",sans-serif}
+  button{font:inherit;cursor:pointer}
+  a{color:var(--accent);text-decoration:none}
+
+  /* ================= sidebar ================= */
+  .sidebar{width:248px;flex-shrink:0;display:flex;flex-direction:column;padding:0 18px;
+    background:linear-gradient(180deg,var(--armor),var(--rail),var(--armor));border-right:1px solid var(--line)}
+  .logo{display:flex;align-items:center;gap:12px;padding:48px 0 22px}
+  .mark{width:42px;height:42px;border-radius:6px;background:var(--steel);display:flex;align-items:center;justify-content:center;
+    font-size:22px;color:var(--accent);font-family:ui-monospace,monospace}
+  .logo b{display:block;font-size:21px;font-weight:800;letter-spacing:2px;line-height:1.1}
+  .logo small{display:block;font:8px ui-monospace,monospace;letter-spacing:1px;color:var(--energy);margin-top:3px}
+  .newconv{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px;border-radius:5px;
+    border:1px solid #408ce880;background:var(--accent);color:#fff;font-size:15px;font-weight:500}
+  .nav{display:flex;flex-direction:column;gap:3px;padding:17px 0}
+  .nav button{display:flex;align-items:center;gap:11px;width:100%;padding:12px 10px;border:0;border-radius:5px;
+    background:transparent;color:var(--ink);font-size:15px;text-align:left;position:relative}
+  .nav button i{width:21px;text-align:center;font-style:normal;opacity:.9}
+  .nav button:hover{background:#ffffff08}
+  .nav button.active{background:#408ce81f}
+  .nav button.active::before{content:"";position:absolute;left:0;top:8px;bottom:8px;width:3px;background:var(--energy);border-radius:2px}
+  .workspace{display:flex;align-items:center;justify-content:space-between;padding:0 0 8px;color:var(--muted);font-size:13px}
+  .ws-name{display:flex;align-items:center;gap:8px;color:var(--accent);font-size:14px;padding-bottom:6px}
+  .convlist{flex:1;overflow:auto;display:flex;flex-direction:column;gap:4px;padding-bottom:10px}
+  .convlist::-webkit-scrollbar{width:6px}.convlist::-webkit-scrollbar-thumb{background:#2a3242;border-radius:6px}
+  .conv{display:flex;align-items:center;gap:7px;width:100%;padding:12px 10px;line-height:1.45;border:0;border-radius:8px;background:transparent;
+    color:var(--ink);font-size:13px;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .conv:hover{background:#ffffff07}
+  .conv.active{background:#4a8cf01a}
+  .foot{display:flex;flex-direction:column;gap:6px;padding:8px 12px}
+  .foot .ver{font:11px ui-monospace,monospace;color:var(--muted)}
+  .foot button{border:0;background:none;color:var(--ink);text-align:left;padding:6px 0;font-size:13px;display:flex;align-items:center;gap:8px}
+  .foot button.muted{color:var(--muted);font-size:12px}
+
+  /* ================= main ================= */
+  main{flex:1;min-width:0;overflow:auto;padding:40px 40px 70px;position:relative}
+  .pagehead{display:flex;flex-direction:column;gap:17px;margin-bottom:26px}
+  .kicker{display:flex;align-items:center;gap:8px}
+  .kicker .bar{width:28px;height:3px;background:var(--red)}
+  .kicker .txt{font:10px ui-monospace,monospace;letter-spacing:2.2px;color:var(--energy);font-weight:600}
+  .kicker .right{margin-left:auto;font:9px ui-monospace,monospace;letter-spacing:1px;color:var(--muted)}
+  .headrow{display:flex;align-items:center;gap:15px}
+  .headrow h1{margin:0;font-size:29px;font-weight:800;letter-spacing:1px;font-family:ui-rounded,-apple-system,sans-serif}
+  .headrow p{margin:11px 0 0;font-size:13px;color:var(--muted)}
+  .runtime{margin-left:auto;padding:14px;border:1px solid #4a8cf047;border-radius:5px;background:var(--steel);text-align:right;white-space:nowrap}
+  .runtime b{display:block;font:11px ui-monospace,monospace;color:var(--energy)}
+  .runtime span{display:block;font:8px ui-monospace,monospace;letter-spacing:1px;color:var(--muted);margin-top:7px}
+  .rule{display:flex;align-items:center;gap:4px}
+  .rule .a{width:75px;height:2px;background:#4a8cf080}.rule .b{flex:1;height:1px;background:#4a8cf01f}
+  .rule i{width:5px;height:2px;background:#408ce866}
+
+  .statusrow{display:flex;align-items:center;margin:0 0 14px}
+  .statusrow b{font-size:15px;color:var(--accent);font-weight:600}
+  .statusrow span{margin-left:auto;font-size:12px;color:var(--muted)}
+  .errline{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:13px;margin:0 0 22px;cursor:default}
+  .errline b{color:var(--ink);font-weight:500}
+
+  h2.members{font-size:22px;font-weight:700;margin:0 0 14px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:14px}
+
+  /* ================= agent card ================= */
+  .surface{position:relative;background:var(--steel);border:1px solid #ffffff14;border-radius:5px;
+    box-shadow:0 8px 18px #0000004d;padding:16px;display:flex;flex-direction:column;gap:10px}
+  .surface::before{content:"";position:absolute;top:0;left:15px;display:flex;width:20px;height:2px;background:var(--red)}
+  .surface::after{content:"";position:absolute;top:0;left:38px;width:7px;height:2px;background:#4a8cf080}
+  .cardhead{display:flex;align-items:flex-start;gap:14px}
+  .avatar{position:relative;width:78px;height:86px;border-radius:18px;background:#408ce81a;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:3px;flex-shrink:0}
+  .avatar .head{width:21px;height:21px;border-radius:50%;background:#efb491;position:relative}
+  .avatar .head::before{content:"";position:absolute;top:-3px;left:-1px;width:24px;height:8px;border-radius:8px;background:#333845}
+  .avatar .body{width:34px;height:27px;border-radius:9px;background:var(--accent);color:#fff;font-size:8px;font-weight:700;
+    display:flex;align-items:center;justify-content:center}
+  .avatar .legs{display:flex;gap:7px}
+  .avatar .legs i{width:9px;height:12px;border-radius:5px;background:var(--muted)}
+  .avatar .dot{position:absolute;right:3px;bottom:3px;width:12px;height:12px;border-radius:50%;background:var(--muted);border:3px solid var(--steel)}
+  .who{display:flex;flex-direction:column;gap:6px;min-width:0}
+  .who b{font-size:22px;font-weight:700;line-height:1.1}
+  .who small{font-size:12px;color:var(--muted)}
+  .who .state{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+  .who .state i{width:7px;height:7px;border-radius:50%;background:var(--muted);display:inline-block}
+  .speech{font-size:12px;padding:10px;border-radius:8px;background:#131416;color:var(--ink)}
+  .duty{font-size:12px;color:var(--muted)}
+  .big{font:22px/1.2 ui-monospace,monospace;font-weight:600;color:var(--accent)}
+  .meta{font-size:12px;color:var(--muted)}
+  .meta2{font-size:13px;color:var(--ink)}
+  .tiny{font:10px ui-monospace,monospace;color:var(--muted)}
+  .cardfoot{display:flex;align-items:center;gap:10px;margin-top:2px}
+  .btn-ghost{padding:6px 14px;border-radius:5px;border:1px solid #ffffff24;background:transparent;color:var(--ink);font-size:13px}
+  .btn-start{margin-left:auto;padding:6px 14px;border-radius:5px;border:1px solid #408ce880;background:var(--accent);color:#fff;font-size:13px;font-weight:500}
+  .btn-start.blocked{background:#2a2f3a;border-color:#ffffff24;color:var(--muted)}
+
+  .bottombar{position:fixed;left:248px;right:0;bottom:0;padding:12px 40px;display:flex;align-items:center;gap:8px;
+    color:var(--muted);font-size:12px;background:var(--armor);border-top:1px solid var(--line);z-index:5}
+  .bottombar .ok{color:#7bd88f}
+</style>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="mark">&gt;_</div>
+      <div><b>向前 AI</b><small>CAREER WORKSPACE</small></div>
+    </div>
+    <button class="newconv">💬 新会话</button>
+    <div class="nav">
+      <button><i>🔑</i>专家·技能·连接器</button>
+      <button><i>◎</i>岗位管理</button>
+      <button><i>🎓</i>面试学院</button>
+      <button class="active"><i>⏱</i>小队</button>
+    </div>
+    <div class="workspace"><span>工作区</span><span>📁</span></div>
+    <div class="ws-name">📁 默认工作区</div>
+    <div class="convlist" id="convlist"></div>
+    <div class="foot">
+      <span class="ver">客户端 v2.12.0</span>
+      <button class="muted">检查客户端更新</button>
+      <button>🎨 IDE · 深色模式</button>
+      <button>👤 设置</button>
+    </div>
+  </aside>
+
+  <main>
+    <div class="pagehead">
+      <div class="kicker"><span class="bar"></span><span class="txt">XIANGQIAN / WORKSPACE</span><span class="right">NATIVE DESKTOP</span></div>
+      <div class="headrow">
+        <div>
+          <h1>BOSS 推荐 100 岗筛选与回复后投递</h1>
+          <p>小队职责：求职机会发现、沟通、简历准备与后续跟进。点击成员查看独立工作台。</p>
+        </div>
+        <div class="runtime"><b>⌗ BOSS 网页接口 · 本机接入</b><span>LOCAL AGENT RUNTIME</span></div>
+      </div>
+      <div class="rule"><span class="a"></span><span class="b"></span><i></i><i></i><i></i><i></i><i></i></div>
+    </div>
+
+    <div class="statusrow"><b>小队状态：待处理连接</b><span>自动刷新</span></div>
+    <div class="errline"><span>▸</span><b>上次完整流程错误</b><span>（子 Agent 当前状态以卡片为准）</span></div>
+
+    <h2 class="members">小队成员</h2>
+    <div class="grid" id="grid"></div>
+
+    <div class="bottombar"><span class="ok">✓</span><span>当前运行 v2.12.0。已加载本机安装的最新版本。工具和技能可在连接器页面刷新。</span></div>
+  </main>
+
+<script>
+const conversations = [
+  ['查看小筛这个岗位筛选Agent的工作量和结果，只查询，不', true],
+  ['帮我找100个岗位', false],
+  ['帮我找100个岗位', false],
+  ['帮我启动100个BOSS推荐岗位的自动跟进任务。按我的求', false],
+  ['你帮我筛选BOSS推荐页面的岗位，先筛选50个。', false],
+  ['你好，这是对话修复验证，请简短回复一句中文。', false],
+  ['用一句话解释什么是软件测试。', false],
+  ['你好', false],
+  ['帮我查看今天最新的岗位   10个', false],
+  ['@boss-web-tools 帮我筛选10个岗位', false],
+  ['现在能帮我在boss上找相关的岗位么   AI测试/测试', false],
+  ['帮我查看一批工作岗位   10个  并返回对应的JD', false],
+  ['现在能帮我好一个新的岗位JD么', false],
+  ['帮我开始投递简历', false],
+  ['我现在本地的简历是什么样的', false],
+  ['https://www.zhipin.com/job_d', false],
+  ['我现在投了哪家企业', false]
+];
+document.getElementById('convlist').innerHTML = conversations.map(([t, active]) =>
+  `<button class="conv${active ? ' active' : ''}">${active ? '💬 ' : ''}${t}</button>`).join('');
+
+const agents = [
+  { key:'collect', name:'小采', role:'岗位采集专员', state:'空闲', duty:'采集推荐岗位、读取并保存真实 JD。',
+    done:'101', exec:'执行中 0 次 · 待处理 0 岗 · 失败 0 岗', extra:'采集 130 岗 · JD已保存 101 份', tasks:'最近 0 次子任务：成功 0 · 失败 0', start:'开始', blocked:false },
+  { key:'screen', name:'小筛', role:'岗位筛选专员', state:'空闲', duty:'按求职条件筛选岗位，输出匹配依据。',
+    done:'101', exec:'执行中 0 次 · 待处理 0 岗 · 失败 0 岗', extra:'符合 68 · 排除 29', tasks:'最近 0 次子任务：成功 0 · 失败 0', start:'开始', blocked:false },
+  { key:'greet', name:'小聊', role:'打招呼专员', state:'空闲', duty:'准备逐岗招呼，发送并核验回执。',
+    done:'38', exec:'执行中 0 次 · 待处理 0 岗 · 失败 0 岗', extra:'', tasks:'最近 5 次子任务：成功 4 · 失败 1', start:'开始（发送）', blocked:false },
+  { key:'tailor', name:'小简', role:'简历定制专员', state:'空闲', duty:'依据 JD 与真实经历生成定制简历。',
+    done:'68', exec:'执行中 0 次 · 待处理 0 岗 · 失败 0 岗', extra:'', tasks:'最近 1 次子任务：成功 1 · 失败 0', start:'开始', blocked:false },
+  { key:'deliver', name:'小投', role:'简历投递专员', state:'已阻塞 / 暂停', duty:'核对目标版本、审阅和授权后投递附件。',
+    done:'0', exec:'执行中 0 次 · 待处理 39 岗 · 失败 0 岗', extra:'附件请求待处理不代表HR已读', tasks:'最近 0 次子任务：成功 0 · 失败 0', start:'开始（发送）', blocked:true },
+  { key:'followup', name:'小信', role:'回复跟进专员', state:'等待条件 / 新消息', duty:'同步 HR 回复，记录待办和跟进证据。',
+    done:'5', exec:'执行中 0 次 · 待处理 0 岗 · 失败 0 岗', extra:'', tasks:'最近 294 次子任务：成功 124 · 失败 170', start:'开始', blocked:false },
+  { key:'interview', name:'小面', role:'面试管理专员', state:'等待条件 / 新消息', duty:'识别面试邀请，记录待确认安排与状态。',
+    done:'0', exec:'执行中 0 次 · 待处理 0 岗 · 失败 0 岗', extra:'', tasks:'最近 0 次子任务：成功 0 · 失败 0', start:'开始', blocked:false }
+];
+document.getElementById('grid').innerHTML = agents.map(a => `
+  <div class="surface">
+    <div class="cardhead">
+      <div class="avatar">
+        <div class="head"></div>
+        <div class="body">向前</div>
+        <div class="legs"><i></i><i></i></div>
+        <div class="dot"></div>
+      </div>
+      <div class="who">
+        <b>${a.name}</b>
+        <small>${a.role}</small>
+        <div class="state"><i></i>${a.state}</div>
+      </div>
+    </div>
+    <div class="speech">我已就位，可以给我安排工作。</div>
+    <div class="duty">${a.duty}</div>
+    <div class="big">已记录 ${a.done} 个岗位</div>
+    <div class="meta">${a.exec}</div>
+    ${a.extra ? `<div class="meta2">${a.extra}</div>` : ''}
+    <div class="tiny">${a.tasks}</div>
+    <div class="cardfoot">
+      <button class="btn-ghost">进入工作台</button>
+      <button class="btn-start${a.blocked ? ' blocked' : ''}">${a.start}</button>
+    </div>
+  </div>`).join('');
+</script>
+</body>
+</html>
