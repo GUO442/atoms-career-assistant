@@ -100,7 +100,7 @@ python3 -m unittest discover -s tests -v
 
 本项目依赖「本机登录的 BOSS 会话」和「本地 SQLite」，**完整功能不适合直接公网部署**。可选的部署方式：
 
-- **静态展示**：`demo/` 目录是纯前端界面演示（Mock 数据），可直接用任意静态托管（GitHub Pages / Netlify / Vercel）打开。
+- **在线 Demo**：<https://guo442.github.io/atoms-career-assistant/> —— `docs/` 目录复用真实前端 UI（`web/` 的 HTML/CSS/JS）+ 一个拦截 `/api/*` 的 Mock 脚本，静态托管即可打开，界面与本地客户端一致。
 - **自托管**：在能访问 BOSS 的设备上按「快速开始」运行即可；如需公网访问，请自行加反向代理与鉴权，并注意个人信息合规。
 
 ## License
