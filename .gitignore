@@ -1,0 +1,36 @@
+# ===== 本地运行数据与隐私数据（不入库）=====
+# data/ 含 BOSS 登录态、公司/HR 聊天、简历、岗位库等个人隐私数据
+/data/
+/jobs/
+/releases/
+/deliverables/
+/rendered/
+/rendered-numbered/
+/rendered-preview/
+/desktop/
+/.mcp-venv/
+
+# ===== 体积大或本机产物 =====
+__pycache__/
+*.pyc
+*.pyo
+*.sqlite3
+*.sqlite3-*
+*.log
+*.out
+*.bak-*
+
+# ===== 个人资料与截图（不入库）=====
+*.docx
+*.png
+*.jpg
+*.jpeg
+.DS_Store
+/求职助手.app/
+
+# ===== 第三方技能包（体积大，未纳入本仓库）=====
+/skills/career-ops/
+
+# ===== 本地认证临时文件（不入库）=====
+.gh-device.json
+.gh-token

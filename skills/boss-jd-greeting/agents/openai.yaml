@@ -1,0 +1,4 @@
+interface:
+  display_name: "BOSS 岗位定制招呼"
+  short_description: "结合岗位JD和真实简历生成招呼，保存批量计划并核验发送回执"
+  default_prompt: "使用 $boss-jd-greeting 为已选岗位生成有经历证据的定制招呼，并按本轮授权执行。"

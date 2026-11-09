@@ -1,0 +1,4 @@
+interface:
+  display_name: "岗位查询与筛选"
+  short_description: "理解查询目标，区分本地回顾与在线找岗，并按真实工具结果推进岗位筛选"
+  default_prompt: "使用 $job-search-screening 查询已有岗位，或按我的条件在线找岗并核对完整JD。"

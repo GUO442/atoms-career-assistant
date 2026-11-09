@@ -1,0 +1,92 @@
+{
+  "source": "Search and detail observed in Chrome Network HAR on 2026-10-23; other endpoints remain source-only. Observed success is not independent transport validation.",
+  "interfaces": [
+    {
+      "tool": "search",
+      "method": "POST",
+      "path": "/wapi/zpgeek/search/joblist.json",
+      "parameters": [
+        "page",
+        "pageSize",
+        "city",
+        "query",
+        "expectInfo",
+        "multiSubway",
+        "multiBusinessDistrict",
+        "position",
+        "jobType",
+        "salary",
+        "experience",
+        "degree",
+        "industry",
+        "scale",
+        "stage",
+        "scene",
+        "encryptExpectId"
+      ],
+      "encoding": "application/x-www-form-urlencoded",
+      "effect": "read",
+      "verification": "observed_browser_success",
+      "http_status": 200,
+      "business_code": 0
+    },
+    {
+      "tool": "detail",
+      "method": "GET",
+      "path": "/wapi/zpgeek/job/detail.json",
+      "parameters": [
+        "securityId",
+        "lid",
+        "_"
+      ],
+      "effect": "read",
+      "verification": "observed_browser_success",
+      "http_status": 200,
+      "business_code": 0
+    },
+    {
+      "tool": "card",
+      "method": "GET",
+      "path": "/wapi/zpgeek/job/card.json",
+      "parameters": [
+        "securityId",
+        "lid"
+      ],
+      "effect": "read",
+      "verification": "source_only"
+    },
+    {
+      "tool": "greet",
+      "method": "POST",
+      "path": "/wapi/zpgeek/friend/add.json",
+      "parameters": [
+        "securityId",
+        "jobId",
+        "greeting",
+        "lid"
+      ],
+      "effect": "write_contact_only",
+      "verification": "source_only",
+      "callable": false,
+      "note": "Initiates communication; NOT evidence of resume attachment delivery."
+    },
+    {
+      "tool": "delivery_history",
+      "method": "GET",
+      "path": "/wapi/zprelation/resume/geekDeliverList",
+      "parameters": [],
+      "effect": "read",
+      "verification": "source_only",
+      "callable": false
+    },
+    {
+      "tool": "resume_send",
+      "method": null,
+      "path": null,
+      "parameters": [],
+      "effect": "write_attachment",
+      "verification": "not_identified",
+      "callable": false
+    }
+  ]
+}

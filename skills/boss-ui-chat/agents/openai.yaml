@@ -1,0 +1,4 @@
+interface:
+  display_name: "BOSS 无头浏览器消息"
+  short_description: "从岗位来源页进入HR聊天，以无头浏览器填写发送并核验回执"
+  default_prompt: "使用 $boss-ui-chat 检查指定岗位的聊天UI，并按已有授权发送对应定制话术。"

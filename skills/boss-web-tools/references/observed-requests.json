@@ -1,0 +1,407 @@
+[
+  {
+    "method": "POST",
+    "path": "/wapi/zppassport/set/zpToken",
+    "query_fields": [],
+    "body_fields": [],
+    "http_status": 200,
+    "evidence": "observed_har_request",
+    "note": "Observed request is not proof of business success; no request replay."
+  },
+  {
+    "method": "GET",
+    "path": "/wapi/zpuser/wap/getUserInfo.json",
+    "query_fields": [
+      "_"
+    ],
+    "body_fields": [],
+    "http_status": 200,
+    "evidence": "observed_har_request",
+    "note": "Observed request is not proof of business success; no request replay."
+  },
+  {
+    "method": "GET",
+    "path": "/wapi/zpchat/notify/setting/get",
+    "query_fields": [
+      "_"
+    ],
+    "body_fields": [],
+    "http_status": 200,
+    "evidence": "observed_har_request",
+    "note": "Observed request is not proof of business success; no request replay."
+  },
+  {
+    "method": "POST",
+    "path": "/wapi/zpCommon/toggle/all",
+    "query_fields": [],
+    "body_fields": [
+      "attrs%5Bguid%5D",
+      "attrs%5BuserAgent%5D",
+      "system"
+    ],
+    "http_status": 200,
+    "evidence": "observed_har_request",
+    "note": "Observed request is not proof of business success; no request replay."
+  },
+  {
+    "method": "GET",
+    "path": "/wapi/zpgeek/common/data/header.json",
+    "query_fields": [
+      "_"
+    ],
+    "body_fields": [],
+    "http_status": 200,
+    "evidence": "observed_har_request",
+    "note": "Observed request is not proof of business success; no request replay."
+  },
+  {
+    "method": "GET",
+    "path": "/wapi/zppassport/get/wt",
+    "query_fields": [],
+    "body_fields": [],
+    "http_status": 200,
+    "evidence": "observed_har_request",
+    "note": "Observed request is not proof of business success; no request replay."
+  },
+  {
+    "method": "GET",
+    "path": "/wapi/zpgeek/common/data/defaultcity.json",
+    "query_fields": [
+      "_"
+    ],
+    "body_fields": [],
+    "http_status": 200,
+    "evidence": "observed_har_request",
+    "note": "Observed request is not proof of business success; no request replay."
+  },
+  {
+    "method": "GET",
+    "path": "/wapi/zpgeek/resume/complete/step.json",
+    "query_fields": [
+      "_",
+      "version"
+    ],
+    "body_fields": [],
+    "http_status": 200,
+    "evidence": "observed_har_request",
+    "note": "Observed request is not proof of business success; no request replay."
+  },
+  {
+    "method": "GET",
+    "path": "/wapi/zpgeek/pc/recommend/expect/list.json",
+    "query_fields": [
+      "_"
+    ],
+    "body_fields": [],
+    "http_status": 200,
+    "evidence": "observed_har_request",
+    "note": "Observed request is not proof of business success; no request replay."
+  },
+  {
+    "method": "GET",
+    "path": "/wapi/zpgeek/pc/all/filter/conditions.json",
+    "query_fields": [
+      "_"
+    ],
+    "body_fields": [],
+    "http_status": 200,
+    "evidence": "observed_har_request",
+    "note": "Observed request is not proof of business success; no request replay."
+  },
+  {
+    "method": "GET",
+    "path": "/wapi/zpgeek/businessDistrict.json",
+    "query_fields": [
+      "_",
+      "cityCode"
+    ],
+    "body_fields": [],
+    "http_status": 200,
+    "evidence": "observed_har_request",
+    "note": "Observed request is not proof of business success; no request replay."
+  },
+  {
+    "method": "GET",
+    "path": "/wapi/zpCommon/data/getSubwayByCity",
+    "query_fields": [
+      "_",
+      "cityCode"
+    ],
+    "body_fields": [],
+    "http_status": 200,
+    "evidence": "observed_har_request",
+    "note": "Observed request is not proof of business success; no request replay."
+  },
+  {
+    "method": "GET",
+    "path": "/wapi/zpCommon/data/getCityShowPosition",
+    "query_fields": [
+      "_"
+    ],
+    "body_fields": [],
+    "http_status": 200,
+    "evidence": "observed_har_request",
+    "note": "Observed request is not proof of business success; no request replay."
+  },
+  {
+    "method": "GET",
+    "path": "/wapi/zpCommon/data/industryFilterExemption",
+    "query_fields": [
+      "_"
+    ],
+    "body_fields": [],
+    "http_status": 200,
+    "evidence": "observed_har_request",
+    "note": "Observed request is not proof of business success; no request replay."
+  },
+  {
+    "method": "GET",
+    "path": "/wapi/certification/edu/card/getEduWarnCard",
+    "query_fields": [
+      "_"
+    ],
+    "body_fields": [],
+    "http_status": 200,
+    "evidence": "observed_har_request",
+    "note": "Observed request is not proof of business success; no request replay."
+  },
+  {
+    "method": "GET",
+    "path": "/wapi/zpgeek/common/data/footer.json",
+    "query_fields": [
+      "_"
+    ],
+    "body_fields": [],
+    "http_status": 200,
+    "evidence": "observed_har_request",
+    "note": "Observed request is not proof of business success; no request replay."
+  },
+  {
+    "method": "GET",
+    "path": "/wapi/zpgeek/resume/restrict/list.json",
+    "query_fields": [
+      "_"
+    ],
+    "body_fields": [],
+    "http_status": 200,
+    "evidence": "observed_har_request",
+    "note": "Observed request is not proof of business success; no request replay."
+  },
+  {
+    "method": "GET",
+    "path": "/wapi/zpgeek/agreement/update/tip.json",
+    "query_fields": [],
+    "body_fields": [],
+    "http_status": 200,
+    "evidence": "observed_har_request",
+    "note": "Observed request is not proof of business success; no request replay."
+  },
+  {
+    "method": "GET",
+    "path": "/wapi/zpgeek/resume/parser/querybar.json",
+    "query_fields": [],
+    "body_fields": [],
+    "http_status": 200,
+    "evidence": "observed_har_request",
+    "note": "Observed request is not proof of business success; no request replay."
+  },
+  {
+    "method": "GET",
+    "path": "/wapi/zpgeek/common/data/city/site.json",
+    "query_fields": [],
+    "body_fields": [],
+    "http_status": 200,
+    "evidence": "observed_har_request",
+    "note": "Observed request is not proof of business success; no request replay."
+  },
+  {
+    "method": "GET",
+    "path": "/wapi/zpgeek/webtopbanner/query.json",
+    "query_fields": [],
+    "body_fields": [],
+    "http_status": 200,
+    "evidence": "observed_har_request",
+    "note": "Observed request is not proof of business success; no request replay."
+  },
+  {
+    "method": "GET",
+    "path": "/wapi/zpuser/wap/getSecurityGuideV1",
+    "query_fields": [],
+    "body_fields": [],
+    "http_status": 200,
+    "evidence": "observed_har_request",
+    "note": "Observed request is not proof of business success; no request replay."
+  },
+  {
+    "method": "POST",
+    "path": "/wapi/zpCommon/toggle/all",
+    "query_fields": [],
+    "body_fields": [
+      "system"
+    ],
+    "http_status": 200,
+    "evidence": "observed_har_request",
+    "note": "Observed request is not proof of business success; no request replay."
+  },
+  {
+    "method": "GET",
+    "path": "/wapi/zpCommon/data/cityGroup.json",
+    "query_fields": [
+      "_"
+    ],
+    "body_fields": [],
+    "http_status": 200,
+    "evidence": "observed_har_request",
+    "note": "Observed request is not proof of business success; no request replay."
+  },
+  {
+    "method": "GET",
+    "path": "/wapi/zpitem/geek/vip/info",
+    "query_fields": [],
+    "body_fields": [],
+    "http_status": 200,
+    "evidence": "observed_har_request",
+    "note": "Observed request is not proof of business success; no request replay."
+  },
+  {
+    "method": "GET",
+    "path": "/wapi/zpuser/h5/account/getStatus",
+    "query_fields": [],
+    "body_fields": [],
+    "http_status": 200,
+    "evidence": "observed_har_request",
+    "note": "Observed request is not proof of business success; no request replay."
+  },
+  {
+    "method": "POST",
+    "path": "/wapi/zpCommon/toggle/all",
+    "query_fields": [],
+    "body_fields": [
+      "attrs%5Bpc_device_id%5D",
+      "attrs%5BuserAgent%5D",
+      "system"
+    ],
+    "http_status": 200,
+    "evidence": "observed_har_request",
+    "note": "Observed request is not proof of business success; no request replay."
+  },
+  {
+    "method": "POST",
+    "path": "/wapi/zpApm/actionLog/fe/common.json",
+    "query_fields": [],
+    "body_fields": [],
+    "http_status": 200,
+    "evidence": "observed_har_request",
+    "note": "Observed request is not proof of business success; no request replay."
+  },
+  {
+    "method": "POST",
+    "path": "/wapi/zpgeek/search/joblist.json",
+    "query_fields": [
+      "_"
+    ],
+    "body_fields": [
+      "city",
+      "degree",
+      "encryptExpectId",
+      "expectInfo",
+      "experience",
+      "industry",
+      "jobType",
+      "multiBusinessDistrict",
+      "multiSubway",
+      "page",
+      "pageSize",
+      "position",
+      "query",
+      "salary",
+      "scale",
+      "scene",
+      "stage"
+    ],
+    "http_status": 200,
+    "evidence": "observed_har_request",
+    "note": "Observed request is not proof of business success; no request replay."
+  },
+  {
+    "method": "GET",
+    "path": "/wapi/zpgeek/job/detail.json",
+    "query_fields": [
+      "_",
+      "lid",
+      "securityId"
+    ],
+    "body_fields": [],
+    "http_status": 200,
+    "evidence": "observed_har_request",
+    "note": "Observed request is not proof of business success; no request replay."
+  },
+  {
+    "method": "GET",
+    "path": "/wapi/zpgeek/search/job/seo/data.json",
+    "query_fields": [
+      "_",
+      "city",
+      "jobCity",
+      "multiBusinessDistrict"
+    ],
+    "body_fields": [],
+    "http_status": 200,
+    "evidence": "observed_har_request",
+    "note": "Observed request is not proof of business success; no request replay."
+  },
+  {
+    "method": "GET",
+    "path": "/wapi/zpgeek/search/job/tdk.json",
+    "query_fields": [
+      "_",
+      "city",
+      "encryptExpectId",
+      "expectInfo",
+      "jobType",
+      "mixExpectType",
+      "multiBusinessDistrict",
+      "multiSubway",
+      "salary"
+    ],
+    "body_fields": [],
+    "http_status": 200,
+    "evidence": "observed_har_request",
+    "note": "Observed request is not proof of business success; no request replay."
+  },
+  {
+    "method": "GET",
+    "path": "/wapi/zpgeek/search/job/sidebar.json",
+    "query_fields": [
+      "_"
+    ],
+    "body_fields": [],
+    "http_status": 200,
+    "evidence": "observed_har_request",
+    "note": "Observed request is not proof of business success; no request replay."
+  },
+  {
+    "method": "GET",
+    "path": "/wapi/zpitem/geek/vip/info",
+    "query_fields": [
+      "_"
+    ],
+    "body_fields": [],
+    "http_status": 200,
+    "evidence": "observed_har_request",
+    "note": "Observed request is not proof of business success; no request replay."
+  },
+  {
+    "method": "POST",
+    "path": "/wapi/zpCommon/actionLog/common.json",
+    "query_fields": [
+      "_"
+    ],
+    "body_fields": [
+      "ba"
+    ],
+    "http_status": 200,
+    "evidence": "observed_har_request",
+    "note": "Observed request is not proof of business success; no request replay."
+  }
+]

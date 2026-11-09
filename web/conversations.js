@@ -1,0 +1,18 @@
+let activeConversation=null,conversationRevision=0,changingConversation=false;
+function displayConversation(c){activeConversation=c.id;conversationRevision=c.revision;state.messages=c.messages;sessionStorage.setItem('career-conversation',c.id);$('messages').replaceChildren();c.messages.forEach(add);$('conversation-title').textContent=c.title;$('input').value='';$('status').textContent='当前会话已加载 · 简历与岗位资料共用'}
+async function refreshConversations(){const r=await fetch('/api/conversations');if(!r.ok)throw Error('会话列表读取失败');const d=await r.json();$('conversation-list').replaceChildren();for(const c of d.conversations){if(c.count===0&&c.id!==activeConversation)continue;const b=el('button',undefined,'conversation-item'+(c.id===activeConversation?' selected':''));b.setAttribute('aria-current',c.id===activeConversation?'true':'false');b.append(el('strong',c.title),el('small',new Date(c.updated).toLocaleString('zh-CN')+' · '+c.count+' 条消息'+(c.id===activeConversation?' · 当前会话':'')));b.onclick=()=>switchConversation(c.id).catch(e=>$('status').textContent=e.message);$('conversation-list').append(b)}return d.conversations}
+async function initConversations(){const list=await refreshConversations();const saved=sessionStorage.getItem('career-conversation');const id=list.find(c=>c.id===saved)?.id||list[0]?.id;if(id){const r=await fetch('/api/conversations/'+id);if(!r.ok)throw Error('会话加载失败');displayConversation(await r.json())}else displayConversation(await api('/api/conversations',{action:'create'}));await refreshConversations()}
+async function saveConversation(){if(!activeConversation)throw Error('会话尚未加载，请稍后');const c=await api('/api/conversations',{action:'save',id:activeConversation,messages:state.messages,revision:conversationRevision});conversationRevision=c.revision;$('conversation-title').textContent=c.title}
+async function switchConversation(id){if(busy||changingConversation){$('status').textContent='正在回复，请等待完成后切换会话';return}changingConversation=true;try{const r=await fetch('/api/conversations/'+id);if(!r.ok)throw Error('会话加载失败');displayConversation(await r.json());$('history-dialog').close();await refreshConversations()}finally{changingConversation=false}}
+$('newconversation').onclick=async()=>{if(busy||changingConversation){$('status').textContent='正在回复，请等待完成后新建会话';return}if(activeConversation&&!state.messages.length){$('input').focus();$('status').textContent='当前已是空白会话，可直接开始聊天';return}changingConversation=true;try{displayConversation(await api('/api/conversations',{action:'create',current:activeConversation}));await refreshConversations()}catch(e){$('status').textContent=e.message}finally{changingConversation=false}};
+$('historyconversation').onclick=async()=>{try{await refreshConversations();$('history-dialog').showModal()}catch(e){$('status').textContent=e.message}};
+$('closehistory').onclick=()=>$('history-dialog').close();
+
+if(!location.pathname.startsWith('/admin')){
+ const sidebar=document.createElement('nav');sidebar.id='conversation-sidebar';sidebar.setAttribute('aria-label','会话列表');
+ const brand=el('div','✦ 向前','sidebar-brand');sidebar.append(brand,$('newconversation'),el('div','历史会话','history-label'),$('conversation-list'));
+ const tools=el('div',undefined,'agent-sidebar-tools');
+ for(const [id,label] of [['harness','求职 Agent'],['profile','真实经历档案'],['jobs','岗位与 JD'],['library','简历与投递记录']]){const b=el('button',label);b.onclick=()=>{if(id==='harness')refreshHarness();if(id==='library')refreshLibrary();openSheet(id,label)};tools.append(b)}
+ sidebar.insertBefore(tools,sidebar.querySelector('.history-label'));
+ document.body.prepend(sidebar);$('historyconversation').classList.add('hidden');
+}

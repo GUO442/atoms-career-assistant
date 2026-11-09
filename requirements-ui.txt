@@ -1,0 +1,4 @@
+-r requirements.txt
+# Optional headless UI tools use the same API as the existing local environment.
+patchright>=1.0,<2
+boss-agent-cli==3.0.0

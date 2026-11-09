@@ -1,0 +1,17 @@
+向前 · 求职助手（本地版）
+
+启动：双击同目录下的“求职助手.app”。启动器会打开 http://127.0.0.1:18743。
+请保持整个 career-assistant 文件夹结构，不要单独移动 .app。
+依赖：本机 Python 3；AI 对话还需要已安装且登录的 Codex CLI。
+
+1. 在“真实经历档案”粘贴简历与求职偏好并保存；支持 TXT / Markdown 导入。
+2. 点击“打开 BOSS 直聘”，在浏览器登录并找到岗位。
+3. 在“岗位与 JD”粘贴当前岗位链接和完整 JD。
+4. 返回对话，勾选发送同意选项，再分析岗位或定制简历。
+5. 点击导出，下载包含档案、JD 和对话结果的 Markdown 文件。
+
+当前限制：尚未接通 BOSS 自动登录与搜索；只保存一个当前岗位；暂不解析 PDF/Word，不生成 Word/PDF；对话调用代码已接入本机 Codex CLI，但未执行真实模型请求验证。
+资料保存在 data/workspace.json。AI 请求会将档案、JD和对话发送给当前 Codex 模型服务，不代表离线模型。
+本地服务只监听 127.0.0.1。关闭浏览器不会关闭服务；下次启动复用已有服务。
+源码：server.py（本地API及Codex调用）、web/（界面）、launch.py（启动器）。
+模型集成参考：https://developers.openai.com/codex/noninteractive

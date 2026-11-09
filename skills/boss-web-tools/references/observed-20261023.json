@@ -1,0 +1,67 @@
+[
+  {
+    "method": "POST",
+    "path": "/wapi/zpgeek/search/joblist.json",
+    "query_fields": [
+      "_"
+    ],
+    "body_fields": [
+      "page",
+      "pageSize",
+      "city",
+      "query",
+      "expectInfo",
+      "multiSubway",
+      "multiBusinessDistrict",
+      "position",
+      "jobType",
+      "salary",
+      "experience",
+      "degree",
+      "industry",
+      "scale",
+      "stage",
+      "scene",
+      "encryptExpectId"
+    ],
+    "status": 200,
+    "business_code": 0,
+    "data_fields": [
+      "resCount",
+      "filterString",
+      "lid",
+      "hasMore",
+      "jobList",
+      "totalCount",
+      "brandCard"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/wapi/zpgeek/job/detail.json",
+    "query_fields": [
+      "securityId",
+      "lid",
+      "_"
+    ],
+    "body_fields": [],
+    "status": 200,
+    "business_code": 0,
+    "data_fields": [
+      "pageType",
+      "selfAccess",
+      "securityId",
+      "sessionId",
+      "lid",
+      "jobInfo",
+      "bossInfo",
+      "brandComInfo",
+      "oneKeyResumeInfo",
+      "relationInfo",
+      "handicappedInfo",
+      "appendixInfo",
+      "atsOnlineApplyInfo",
+      "certMaterials"
+    ]
+  }
+]
